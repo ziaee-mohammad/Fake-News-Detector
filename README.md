@@ -23,3 +23,10 @@ Ensure that your working directory is empty to avoid any filename conflicts. The
 ## PART 4
 - Download the LIAR dataset and ensure that the file `test.tsv` is in your working directory.
 - Before running the cells in `Part 4/Task_1_2_3_simple_model.ipynb`, verify that you have executed all previous parts. This should result in a file named `WITHOUT_NUM_cleaned_file_with_labels.csv` being present in your working directory.
+
+---
+
+> ### 👨🏻‍💻 *Author*
+*Mohammad Ziaee*  
+📍 Computer Science Graduate Student | AI & Data Science Enthusiast  
+🔗 [GitHub Profile](https://github.com/ziaee-mohammad)
