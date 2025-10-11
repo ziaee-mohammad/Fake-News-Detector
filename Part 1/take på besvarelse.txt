@@ -1,0 +1,21 @@
+In this project, we explored a subset of the FakeNewsCorpus to practice data retrieval, cleaning, and basic exploration. 
+We began by downloading a small sample (news_sample.csv) and created a text‐cleaning pipeline to remove common noise such as dates, URLs, numeric values, and emails. 
+We used Python and Pandas to load our data into a DataFrame, which made it straightforward to select columns, handle missing values, and concatenate text. 
+Within each row, we employed regular expressions (via the re module) to replace unwanted patterns with placeholders (e.g., <DATE>, <URL>).
+
+After cleaning, we used NLTK’s word_tokenize to split the text into individual words (tokens). 
+We then removed stopwords (e.g., “the,” “and”) using NLTK’s English stopword list, and observed a ~35.6% reduction in token count. 
+Next, we applied the Porter stemmer to merge word variations (e.g., “running,” “runs,” “ran” → “run”). 
+While this typically reduces the vocabulary size further, in our small sample the final token count remained unchanged, suggesting many words did not vary in form.
+
+For Task 2, we scaled this approach to a larger dataset of 995,000 rows. 
+To avoid memory constraints, we read the CSV file in chunks of 25k rows, applying the same cleaning function, tokenization, stopword removal, and stemming to each chunk before concatenating the results. 
+This chunk‐based method allowed us to handle nearly a million rows without overwhelming our system, and we saved the cleaned output to a new CSV file.
+
+In Task 3, we explored the cleaned dataset for interesting patterns. 
+We checked for missing metadata (e.g., authors, tags, summaries) and found some columns (like summary) were entirely empty, while others (like meta_keywords) were missing in only about 4% of rows. 
+We also analyzed domain distributions, discovering nytimes.com as the most frequent source, and we looked for “error” in the content to identify possible scraping artifacts. 
+Additionally, we plotted the top 10,000 words on a log‐log scale, revealing a pattern where a few words occur extremely often while most are relatively rare.
+
+Finally, in Task 4, we split our processed dataset into 80% training, 10% validation, and 10% test subsets, ensuring we have separate data for model training, hyperparameter tuning, and final evaluation. 
+Overall, this workflow—using Pandas, NLTK, and a chunk‐based strategy—proved effective for cleaning, analyzing, and preparing the FakeNewsCorpus data for subsequent modeling and experiments.
