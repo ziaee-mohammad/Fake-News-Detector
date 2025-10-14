@@ -1,27 +1,27 @@
-# 🧩 Part 2 — Simple Logistic Regression Model
+# 📘 Notebooks — Fake News Detector
 
-This section introduces a baseline model using *Logistic Regression* for detecting fake news articles.
-
----
-
-## 🧠 Overview
-The goal of this part is to build a simple yet effective classifier using logistic regression.  
-It serves as a baseline for comparison with more advanced models in later parts.
+This directory contains Jupyter Notebooks that walk through each step of the *Fake News Detection* pipeline.
 
 ---
 
-## ⚙ Prerequisites
-Before running this notebook, make sure that:
-- You have already completed *Part 1* and generated the file cleaned_file.csv.
-- The file output_big.txt is present in your working directory (it should already exist).
-
-These files are required for loading the preprocessed dataset and additional resources.
+## 📚 Available Notebooks
+| Notebook | Description |
+|------------|-------------|
+| Fake_News_Detection.ipynb | Complete workflow: preprocessing, feature extraction (TF-IDF), model training & evaluation |
 
 ---
 
-## 🚀 How to Run
-Run the following notebooks in sequence:
+## 🧠 Workflow Overview
+1. *Data Loading* — Import training/testing data  
+2. *Text Cleaning* — Tokenization, stopword removal, lemmatization  
+3. *Feature Engineering* — TF-IDF vectorization  
+4. *Model Training* — Logistic Regression, Naive Bayes, SVM, Random Forest  
+5. *Evaluation* — Accuracy, Precision, Recall, F1-Score, Confusion Matrix  
+6. *Visualization* — Distribution plots & model comparison charts  
 
-```bash
-Part 2/Task_0_1_2_3.ipynb
-Part 2/More_exploration.ipynb
+---
+
+## 🛠 How to Run
+1. Launch Jupyter Notebook:
+   ```bash
+   jupyter notebook
