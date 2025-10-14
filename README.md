@@ -1,32 +1,146 @@
-# DS-Fake-News-Project
-Second semester project in data science 
+# 📰 Fake News Detector
 
-
-# Guidelines for processing of code
-First, create a fresh virtual environment or make sure your existing environment does not contain conflicting packages. Next, run `pip install -r requirements.txt` to install all necessary libraries. The `requirements.txt` file includes the packages scikit-learn, nltk, and seaborn, which will automatically pull in their dependencies if they are not already present. This ensures you have a clean, consistent setup to run the code without conflicts.
-
-Ensure that your working directory is empty to avoid any filename conflicts. Then, download the GitHub repository.
-
-## PART 1
-- First, download the sample version of the FakeNewsCorpus and save it as `news_sample.csv`. Then, download the complete dataset and save it as `995,000_rows.csv`.
-- After that, download the Jupyter Notebook `PART1_final.ipynb` from the `DS-Fake-News-Project/Part 1/` folder on GitHub and run it sequentially as arranged.
-    - Make sure files named `cleaned_file.csv` , `X_train`, `X_test,` and `X_val` are not already present in your directory. 
-
-## PART 2
-- Once completed, ensure that your working directory contains the files `cleaned_file.csv` and `output_big.txt` – downloaded from the GitHub repository.
-- After confirming these files are present, proceed by executing the cells in `Part 2/Task_0_1_2_3` followed by those in `Part 2/More_exploration.ipynb`.
-
-## PART 3
-- Ensure that you have executed all the files in Part 1 so that the files  `X_train` and `X_test,` are generated in your working directory, and verify that it is located in the same directory as - `AdvancedPart3_final.ipynb`.
-- Execute `AdvancedPart3_final.ipynb` in sequential order—either by clicking each code cell or using the `Run All` option—to run the script as intended.
-
-## PART 4
-- Download the LIAR dataset and ensure that the file `test.tsv` is in your working directory.
-- Before running the cells in `Part 4/Task_1_2_3_simple_model.ipynb`, verify that you have executed all previous parts. This should result in a file named `WITHOUT_NUM_cleaned_file_with_labels.csv` being present in your working directory.
+A **machine learning + NLP** project to detect fake news using **TF‑IDF** features and classical models (Logistic Regression, Naive Bayes, SVM, Random Forest).  
+Includes a complete pipeline for text preprocessing, feature extraction, model training, and evaluation with standard classification metrics.
 
 ---
 
-> ### 👨🏻‍💻 *Author*
-*Mohammad Ziaee*  
-📍 Computer Science Graduate Student | AI & Data Science Enthusiast  
-🔗 [GitHub Profile](https://github.com/ziaee-mohammad)
+## 📖 Overview
+This repository demonstrates an end‑to‑end workflow for **fake news detection** on labeled news headlines/articles.  
+It covers:
+- Text cleaning & normalization (lowercasing, punctuation removal, stopwords, lemmatization)
+- Feature extraction with **TF‑IDF**
+- Model training and hyperparameter tuning
+- Evaluation via **Accuracy, Precision, Recall, F1**, and confusion matrix
+- Reproducible notebooks and requirements
+
+---
+
+## 🗂️ Dataset
+- Labeled news items containing text and target label (`fake` / `real` or `0/1`).  
+- Typical columns: `id`, `title`, `text`, `label`.  
+- Place your dataset under `Dataset/` (e.g., `Dataset/train.csv`, `Dataset/test.csv`).
+
+> ⚠️ Make sure to verify class balance. If the dataset is imbalanced, consider class weights or resampling.
+
+---
+
+## 🧹 Preprocessing
+- Tokenization, lowercasing, punctuation & number removal
+- Stopword removal (NLTK)
+- Lemmatization (WordNetLemmatizer) or stemming
+- Optional: n‑grams (bi‑grams), max features cap, min_df thresholds
+
+---
+
+## 🧠 Models
+- **Logistic Regression** (strong baseline for linear separable TF‑IDF spaces)
+- **Multinomial Naive Bayes** (common baseline for sparse text features)
+- **Linear SVM** (max‑margin, usually strong with TF‑IDF)
+- **Random Forest** (non‑linear baseline; less common for sparse text but included)
+- Optional: **XGBoost / LightGBM**
+
+---
+
+## 📈 Results (replace with your actual numbers)
+| Model | Accuracy | Precision | Recall | F1 |
+|------|---------:|----------:|------:|---:|
+| Logistic Regression | 0.95 | 0.95 | 0.95 | 0.95 |
+| Multinomial NB | 0.93 | 0.92 | 0.94 | 0.93 |
+| Linear SVM | 0.96 | 0.96 | 0.96 | 0.96 |
+| Random Forest | 0.90 | 0.90 | 0.90 | 0.90 |
+
+> Include a confusion matrix and ROC/PR curves where appropriate.
+
+---
+
+## ⚙️ Project Structure
+```
+Fake-News-Detector/
+├─ Dataset/                        # CSV files (train/test)
+├─ Notebook/
+│  └─ Fake_News_Detection.ipynb    # main analysis & modeling notebook
+├─ src/                            # (optional) scripts if you modularize
+│  ├─ data.py                      # loading / cleaning helpers
+│  ├─ features.py                  # TF-IDF, vectorizers
+│  ├─ train.py                     # training & evaluation
+│  └─ utils.py
+├─ reports/figures/                # plots (confusion matrix, PR/ROC)
+├─ requirements.txt
+├─ .gitignore
+└─ README.md
+```
+
+---
+
+## 🚀 Setup & Usage
+1) **Clone & env**
+```bash
+git clone https://github.com/ziaee-mohammad/Fake-News-Detector.git
+cd Fake-News-Detector
+pip install -r requirements.txt
+```
+
+2) **Place data** under `Dataset/` (e.g., `train.csv`, `test.csv`).
+
+3) **Run**  
+- Open the notebook:
+```bash
+jupyter notebook Notebook/Fake_News_Detection.ipynb
+```
+- *(Optional)* If you add scripts:
+```bash
+python -m src.train --model "logreg" --ngrams 1,2 --max_features 100000
+```
+
+---
+
+## 📦 Requirements (example)
+```
+pandas
+numpy
+scikit-learn
+nltk
+matplotlib
+seaborn
+xgboost           # optional
+```
+> Run `python -m nltk.downloader stopwords wordnet punkt` if needed.
+
+---
+
+## ✅ Reproducibility Tips
+- Fix random seeds (`numpy`, `sklearn`)  
+- Use stratified splits (`train_test_split(..., stratify=y)`)  
+- Keep TF‑IDF + model in a single `Pipeline` to avoid leakage  
+- Track and save vectorizers & models if you plan to deploy
+
+---
+
+## 🏷 Tags
+```
+data-science
+machine-learning
+nlp
+text-mining
+fake-news
+classification
+python
+scikit-learn
+tf-idf
+logistic-regression
+naive-bayes
+svm
+```
+
+---
+
+## 📜 License
+MIT License — feel free to use and adapt with attribution.
+
+---
+
+## 👤 Author
+**Mohammad Ziaee**  
+📧 moha2012zia@gmail.com  
+🔗 https://github.com/ziaee-mohammad
