@@ -140,6 +140,8 @@ MIT License — feel free to use and adapt with attribution.
 
 ---
 
+👉 Instagram: [@ziaee_mohammad](https://www.instagram.com/ziaee_mohammad/)
+
 ## 👤 Author
 **Mohammad Ziaee**  
 📧 moha2012zia@gmail.com  
